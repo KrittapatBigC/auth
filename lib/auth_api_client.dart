@@ -6,6 +6,6 @@ class AuthApiClient {
   AuthApiClient(this._apiClient);
 
   Future<dynamic> login(String username, String password) {
-    return _apiClient.post('/login', {'username': username, 'password': password});
+    return _apiClient.post('/composite/v1/login', {'username': username, 'password': password, "type": "phone"});
   }
 }
