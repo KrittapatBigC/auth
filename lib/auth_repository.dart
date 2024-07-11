@@ -1,3 +1,5 @@
+import 'package:authentication/models/login.dart';
+
 import 'auth_api_client.dart';
 
 class AuthRepository {
@@ -5,7 +7,9 @@ class AuthRepository {
 
   AuthRepository(this._authApiClient);
 
-  Future<void> login(String username, String password) async {
-    await _authApiClient.login(username, password);
+  Future<Login> login(String username, String password) async {
+    dynamic d = await _authApiClient.login(username, password);
+    print(d['data']);
+    return Login.fromJson(d['data']);
   }
 }

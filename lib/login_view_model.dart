@@ -1,3 +1,5 @@
+import 'package:authentication/models/login.dart';
+
 import 'auth_repository.dart';
 
 class LoginViewModel {
@@ -5,7 +7,8 @@ class LoginViewModel {
 
   LoginViewModel(this._authRepository);
 
-  Future<void> login(String username, String password) async {
-    await _authRepository.login(username, password);
+  Future<Login> login(String username, String password) async {
+    Login d = await _authRepository.login(username, password);
+    return d;
   }
 }

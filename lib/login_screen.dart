@@ -1,3 +1,4 @@
+import 'package:core/ui/base_loading.dart';
 import 'package:flutter/material.dart';
 import 'login_view_model.dart';
 
@@ -16,20 +17,26 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
 
   void _login() async {
-    setState(() {
-      _isLoading = true;
-    });
+    BaseLoading().startLoading();
+    await widget.loginViewModel.login(_usernameController.text, _passwordController.text);
 
-    try {
-      await widget.loginViewModel.login(_usernameController.text, _passwordController.text);
-      // Handle successful login
-    } catch (e) {
-      // Handle login error
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-    }
+
+    BaseLoading().stopLoading();
+    // setState(() {
+    //   _isLoading = true;
+    // });
+    //
+    // try {
+    //   dynamic d = await widget.loginViewModel.login(_usernameController.text, _passwordController.text);
+    //   print(d);
+    //   // Handle successful login
+    // } catch (e) {
+    //   // Handle login error
+    // } finally {
+    //   setState(() {
+    //     _isLoading = false;
+    //   });
+    // }
   }
 
   @override
